@@ -16,9 +16,11 @@
       };
     },
     created() {
+      console.log("chiama api");
+
       axios.get(this.store.apiUrl).then((response) => {
-        this.store.info = response.info;
-        this.store.results = response.results;
+        this.store.info = response.data.info;
+        this.store.results = response.data.results;
       });
     },
   };
