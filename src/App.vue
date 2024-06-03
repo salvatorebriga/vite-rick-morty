@@ -2,6 +2,7 @@
   import AppHeader from "./components/header/AppHeader.vue";
   import AppNav from "./components/nav/AppNav.vue";
   import AppMain from "./components/main/AppMain.vue";
+  import AppFooter from "./components/footer/AppFooter.vue";
   import axios from "axios";
   import { store } from "./store";
   export default {
@@ -9,6 +10,7 @@
       AppHeader,
       AppNav,
       AppMain,
+      AppFooter,
     },
     data() {
       return {
@@ -30,6 +32,7 @@
   <AppHeader />
   <AppNav />
   <AppMain />
+  <AppFooter :length="store.results.length" />
 </template>
 
 <style lang="scss" scoped></style>
