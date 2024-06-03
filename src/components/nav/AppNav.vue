@@ -31,6 +31,8 @@
       border-radius: 5px;
       border: none;
       font-size: 20px;
+      font-weight: bold;
+      color: black;
 
       &:hover {
         cursor: pointer;
