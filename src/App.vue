@@ -15,15 +15,26 @@
     data() {
       return {
         store,
+        loading: true,
       };
     },
     created() {
       console.log("chiama api");
 
-      axios.get(this.store.apiUrl).then((response) => {
-        this.store.info = response.data.info;
-        this.store.results = response.data.results;
-      });
+      //funziona ma la chiamata è troppo veloce quindi ho messo mezzo secondo di timeout
+      setTimeout(() => {
+        axios
+          .get(this.store.apiUrl)
+          .then((response) => {
+            this.store.info = response.data.info;
+            this.store.results = response.data.results;
+            this.loading = false;
+          })
+          .catch((error) => {
+            console.error("Error fetching data", error);
+            this.loading = false;
+          });
+      }, 500);
     },
   };
 </script>
@@ -31,8 +42,22 @@
 <template>
   <AppHeader />
   <AppNav />
-  <AppMain />
-  <AppFooter :length="store.results.length" />
+  <div v-if="loading">
+    <div class="loadingScreen">
+      <h2>Loading...</h2>
+    </div>
+  </div>
+  <div v-else>
+    <AppMain />
+    <AppFooter :length="store.results.length" />
+  </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .loadingScreen {
+    padding-top: 150px;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+  }
+</style>
