@@ -1,7 +1,7 @@
 <script>
   import { store } from "../../store.js";
   export default {
-    emits: ["search", "reset"],
+    emits: ["searchButton", "resetButton"],
     data() {
       return {
         store,
@@ -19,10 +19,12 @@
       <option value="dead">Dead</option>
       <option value="unknown">Unknown</option>
     </select>
-    <button class="search" value="Search" @click="$emit('search')">
+    <button class="search" value="Search" @click="$emit('searchButton')">
       Search
     </button>
-    <button class="reset" value="Reset" @click="$emit('reset')">Reset</button>
+    <button class="reset" value="Reset" @click="$emit('resetButton')">
+      Reset
+    </button>
   </div>
 </template>
 

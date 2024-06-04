@@ -17,6 +17,7 @@
       <p>prev</p>
     </div>
     <p>Found {{ founded }} characters</p>
+    <p>page {{ this.store.page }}</p>
     <div
       class="arrow"
       @click="$emit('next')"

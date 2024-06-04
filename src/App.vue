@@ -21,7 +21,6 @@
 
     methods: {
       search() {
-        console.log("chiama api");
         //funziona ma la chiamata è troppo veloce quindi ho messo mezzo secondo di timeout
         setTimeout(() => {
           axios
@@ -47,7 +46,12 @@
         }, 500);
       },
 
-      reset() {
+      searchButton() {
+        this.store.page = 1;
+        this.search();
+      },
+
+      resetButton() {
         this.store.name = "";
         this.store.status = "";
         this.store.page = 1;
@@ -72,7 +76,7 @@
 
 <template>
   <AppHeader />
-  <AppNav @search="search" @reset="reset" />
+  <AppNav @searchButton="searchButton" @resetButton="resetButton" />
   <div v-if="loading">
     <div class="loadingScreen">
       <h2>Loading...</h2>
