@@ -31,6 +31,7 @@
                 params: {
                   name: this.store.name,
                   status: this.store.status,
+                  page: this.store.page,
                 },
               }
             )
@@ -43,12 +44,22 @@
               console.error("Error fetching data", error);
               this.loading = false;
             });
-        }, 1000);
+        }, 500);
       },
 
       reset() {
         this.store.name = "";
         this.store.status = "";
+        this.store.page = 1;
+        this.search();
+      },
+
+      next() {
+        this.store.page++;
+        this.search();
+      },
+      prev() {
+        this.store.page--;
         this.search();
       },
     },
@@ -69,7 +80,7 @@
   </div>
   <div v-else>
     <AppMain />
-    <AppFooter :founded="store.info.count" />
+    <AppFooter :founded="store.info.count" @prev="prev" @next="next" />
   </div>
 </template>
 

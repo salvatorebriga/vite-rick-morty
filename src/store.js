@@ -6,6 +6,7 @@ export const store = reactive({
 
   name: "",
   status: "",
+  page: 1,
 
   apiInfo: {
     url: "https://rickandmortyapi.com/api",
