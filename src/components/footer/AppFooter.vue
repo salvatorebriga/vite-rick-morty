@@ -5,7 +5,9 @@
 </script>
 <template>
   <div>
+    <i class="fas fa-angle-left"></i>
     <p>Found {{ founded }} characters</p>
+    <i class="fas fa-angle-right"></i>
   </div>
 </template>
 <style lang="scss" scoped>
