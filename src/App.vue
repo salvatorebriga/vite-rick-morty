@@ -18,30 +18,50 @@
         loading: true,
       };
     },
-    created() {
-      console.log("chiama api");
 
-      //funziona ma la chiamata è troppo veloce quindi ho messo mezzo secondo di timeout
-      setTimeout(() => {
-        axios
-          .get(this.store.apiUrl)
-          .then((response) => {
-            this.store.info = response.data.info;
-            this.store.results = response.data.results;
-            this.loading = false;
-          })
-          .catch((error) => {
-            console.error("Error fetching data", error);
-            this.loading = false;
-          });
-      }, 500);
+    methods: {
+      search() {
+        console.log("chiama api");
+        //funziona ma la chiamata è troppo veloce quindi ho messo mezzo secondo di timeout
+        setTimeout(() => {
+          axios
+            .get(
+              this.store.apiInfo.url + this.store.apiInfo.endpoints.character,
+              {
+                params: {
+                  name: this.store.name,
+                  status: this.store.status,
+                },
+              }
+            )
+            .then((response) => {
+              this.store.info = response.data.info;
+              this.store.results = response.data.results;
+              this.loading = false;
+            })
+            .catch((error) => {
+              console.error("Error fetching data", error);
+              this.loading = false;
+            });
+        }, 1000);
+      },
+
+      reset() {
+        this.store.name = "";
+        this.store.status = "";
+        this.search();
+      },
+    },
+
+    created() {
+      this.search();
     },
   };
 </script>
 
 <template>
   <AppHeader />
-  <AppNav />
+  <AppNav @search="search" @reset="reset" />
   <div v-if="loading">
     <div class="loadingScreen">
       <h2>Loading...</h2>

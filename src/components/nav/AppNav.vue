@@ -1,15 +1,28 @@
 <script>
-  export default {};
+  import { store } from "../../store.js";
+  export default {
+    emits: ["search", "reset"],
+    data() {
+      return {
+        store,
+      };
+    },
+  };
 </script>
 
 <template>
   <div>
-    <input type="text" placeholder="Search character" />
-    <select name="status" id="status">
-      <option value="default">Select status</option>
+    <input type="text" placeholder="Search character" v-model="store.name" />
+    <select name="status" id="status" v-model="store.status">
+      <option value="">-- Select status --</option>
+      <option value="alive">Alive</option>
+      <option value="dead">Dead</option>
+      <option value="unknown">Unknown</option>
     </select>
-    <button class="search" value="Search">Search</button>
-    <button class="reset" value="Reset">Reset</button>
+    <button class="search" value="Search" @click="$emit('search')">
+      Search
+    </button>
+    <button class="reset" value="Reset" @click="$emit('reset')">Reset</button>
   </div>
 </template>
 
@@ -25,6 +38,7 @@
     align-items: center;
     input,
     select,
+    option,
     .search,
     .reset {
       padding: 10px;
