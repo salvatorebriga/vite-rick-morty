@@ -1,11 +1,11 @@
 <script>
   export default {
-    props: ["length"],
+    props: ["founded"],
   };
 </script>
 <template>
   <div>
-    <p>Found {{ length }} characters</p>
+    <p>Found {{ founded }} characters</p>
   </div>
 </template>
 <style lang="scss" scoped>

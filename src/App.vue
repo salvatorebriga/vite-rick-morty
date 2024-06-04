@@ -49,7 +49,7 @@
   </div>
   <div v-else>
     <AppMain />
-    <AppFooter :length="store.results.length" />
+    <AppFooter :founded="store.info.count" />
   </div>
 </template>
 
